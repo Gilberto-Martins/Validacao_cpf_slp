@@ -10,6 +10,7 @@ namespace validação_de_cpf
 
             //leitura do cpf vai ser de fomra sequencial
             Console.WriteLine("Digite seu cpf: ");
+            
             for(int i = 0; i < cpf.Length; i++)
             {
                 cpf[i] = Convert.ToInt32(Console.ReadLine());
@@ -21,9 +22,11 @@ namespace validação_de_cpf
             {
                 Console.Write(cpf[i] + " ");
             }
+
             Console.WriteLine("");
             Console.WriteLine("---------------------");
 
+            
             //calculo do Primeiro digito
             int mult1 = 10;
             int soma1 = 0;
@@ -36,26 +39,34 @@ namespace validação_de_cpf
             rest1 = soma1 % 11;
             rest1 = 11 - rest1;
 
-            //calculo do Segundo digito
-            int mult2 = 11;
-            int soma2 = 0;
-            int rest2 = 0;
-            for (int i = 0; i <= 9; i++)
-            {
-                soma2 += cpf[i] * mult2;
-                mult2--;
-            }
-            rest2 = soma2 % 11;
-            rest2 = 11 - rest2;
 
-            //verificando a validação
-            if (cpf[9] == rest1 && cpf[10] == rest2)
+            //calculo do Segundo digito
+            if(rest1 < 10 && rest1 != 0)
             {
-                Console.WriteLine("CPF Valido!!!");
+                int mult2 = 11;
+                int soma2 = 0;
+                int rest2 = 0;
+                for (int i = 0; i <= 9; i++)
+                {
+                    soma2 += cpf[i] * mult2;
+                    mult2--;
+                }
+                rest2 = soma2 % 11;
+                rest2 = 11 - rest2;
+
+                //verificando a validação
+                if (cpf[9] == rest1 && cpf[10] == rest2)
+                {
+                    Console.WriteLine("CPF Valido!!!");
+                }
+                else
+                {
+                    Console.WriteLine("CPF Invalido!!!");
+                }
             }
             else
             {
-                Console.WriteLine("CPF Invalido!!!");
+                Console.WriteLine("CPF Valido!!");    
             }
         }
     }
